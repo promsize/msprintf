@@ -1,0 +1,21 @@
+language: c
+
+os:
+  - linux
+
+compiler:
+  - gcc
+  - clang
+
+addons:
+  apt:
+    packages:
+      - libc6-dev
+
+sudo: false
+
+script:
+  - make clean
+  - make all
+  - make check
+
