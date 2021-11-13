@@ -12,7 +12,8 @@ TEST?=$(wildcard test.c)
 HDRS?=$(wildcard ${NAME}*.h)
 SRCS?=$(wildcard ${NAME}*.c)
 
-LANGUAGE?=-std=c11 -pedantic -Wall -Wextra
+LANGUAGE?=-std=c11
+WARNINGS?=-pedantic -Wall -Wextra -Wno-unused
 DEBUG?=-g
 OPTIMIZE?=-O2
 DEFINES?=
@@ -20,8 +21,10 @@ INCLUDES?=-I.
 
 ################################################################################
 
-CFLAGS?=${LANGUAGE} ${DEBUG} ${OPTIMIZE} ${DEFINES} ${INCLUDES}
-CPPFLAGS?=${LANGUAGE} ${DEFINES} ${INCLUDES}
+UPNAME=$(shell echo ${NAME} | tr 'a-z' 'A-Z')
+
+CFLAGS=${LANGUAGE} ${WARNINGS} ${DEBUG} ${OPTIMIZE}
+CPPFLAGS=${DEFINES} -DIN_${UPNAME} ${INCLUDES}
 
 OBJS=$(SRCS:.c=.o)
 
@@ -42,7 +45,8 @@ all: ${ALLTGTS}
 # rule for the program
 ifneq (${EXE},)
 ${EXE}: ${PROG} ${LIB}
-	${CC} ${CFLAGS} -o $@ $^
+	${CC} ${CPPFLAGS} -DIN_${UPNAME}_PROG ${CFLAGS} -o $@ $^
+	size $@
 endif
 
 # rule for the library
@@ -59,7 +63,8 @@ check: test
 .PHONY: check
 
 test: ${TEST} ${LIB}
-	${CC} ${CFLAGS} -DTEST -o $@ $^
+	${CC} ${CPPFLAGS} -DIN_${UPNAME}_TEST ${CFLAGS} -o $@ $^
+	size $@
 endif
 
 # generate dependencies
@@ -69,6 +74,10 @@ endif
 	${CC} -M ${CPPFLAGS} $< > $@.$$$$; \
 	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
 	rm -f $@.$$$$
+
+# build rule for C files
+%.o: %.c
+	${CC} ${CPPFLAGS} ${CFLAGS} -c -o $@ $<
 
 # package install
 install: all
