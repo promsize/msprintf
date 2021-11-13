@@ -8,8 +8,7 @@
 
 #include "msprintf.h"
 
-//FUN_FORMAT(printf, 3, 0)
-//ARG_FORMAT(3)
+FUN_FORMAT(printf, 3, 0)
 size_t vasnprintf(char **out, size_t lim, const char *fmt, va_list a) {
   int len, chk;
   char *str;
@@ -40,14 +39,12 @@ size_t vasnprintf(char **out, size_t lim, const char *fmt, va_list a) {
   return len;
 }
 
-//FUN_FORMAT(printf, 2, 0)
-//ARG_FORMAT(2)
+FUN_FORMAT(printf, 2, 0)
 size_t vasprintf(char **out, const char *fmt, va_list a) {
   return vasnprintf(out, INT_MAX, fmt, a);
 }
 
-//FUN_FORMAT(printf, 3, 4)
-//ARG_FORMAT(3)
+FUN_FORMAT(printf, 3, 4)
 size_t asnprintf(char **out, size_t limit, const char *fmt, ...) {
   size_t res;
   va_list a;
