@@ -1,0 +1,14 @@
+{
+  "name": "msprintf",
+  "version": "master",
+  "repo": "promovicz/msprintf",
+  "desciption": "Allocating variants of sprintf",
+  "license": "Unlicense",
+  "keywords": [
+    "asprintf", "msprintf", "sprintf", "printf"
+  ],
+  "src": [
+    "msprintf.h",
+    "msprintf.c"
+  ]
+}
