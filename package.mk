@@ -101,5 +101,5 @@ endif
 
 # source cleanup
 clean:
-	rm -f ${ALLOBJS} ${ALLDEPS} ${LIB} ${EXE} test
+	rm -f ${ALLOBJS} ${ALLDEPS} ${ALLTGTS}
 .PHONY: clean
