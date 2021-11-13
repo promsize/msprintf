@@ -1,5 +1,5 @@
 /*
- * msprintf - Allocating variants of sprintf.
+ * msprintf - Allocating variants of sprintf
  *
  * Copyright (C) 2020-2021 Ingo Albrecht <copyright@promovicz.org>
  */
@@ -15,6 +15,9 @@
   __attribute__((format(arch, fmtindex, argindex)))
 #define ARG_FORMAT(...)                             \
   __attribute__((format_arg(__VA_ARGS__)))
+#else
+#define FUN_FORMAT(...)
+#define ARG_FORMAT(...)
 #endif
 
 /* versions with A that take a destination pointer */
