@@ -54,8 +54,7 @@ size_t asnprintf(char **out, size_t limit, const char *fmt, ...) {
   return res;
 }
 
-//FUN_FORMAT(printf, 2, 3)
-//ARG_FORMAT(2)
+FUN_FORMAT(printf, 2, 3)
 size_t asprintf(char **out, const char *fmt, ...) {
   size_t res;
   va_list a;
