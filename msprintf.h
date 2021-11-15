@@ -20,7 +20,7 @@
 #define ARG_FORMAT(...)
 #endif
 
-/* versions with A that take a destination pointer */
+/* versions with A take a destination pointer */
 FUN_FORMAT(printf, 3, 0)
 extern size_t vasnprintf(char **out, size_t limit, const char *fmt, va_list a);
 FUN_FORMAT(printf, 2, 0)
@@ -30,7 +30,7 @@ extern size_t asnprintf(char **out, size_t limit, const char *fmt, ...);
 FUN_FORMAT(printf, 2, 3)
 extern size_t asprintf(char **out, const char *fmt, ...);
 
-/* versions with M that return the allocated string */
+/* versions with M return the allocated string */
 FUN_FORMAT(printf, 2, 0)
 ARG_FORMAT(2)
 extern char *vmsnprintf(size_t limit, const char *fmt, va_list a);
