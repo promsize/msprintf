@@ -4,7 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifndef IN_MSPRINTF
 #define IN_MSPRINTF
+#endif
 
 #include "msprintf.h"
 
