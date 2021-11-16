@@ -71,11 +71,6 @@ size_t vasnprintf(char **out, size_t lim, const char *fmt, va_list a) {
   return len;
 }
 
-FUN_FORMAT(printf, 2, 0)
-size_t vasprintf(char **out, const char *fmt, va_list a) {
-  return vasnprintf(out, INT_MAX, fmt, a);
-}
-
 FUN_FORMAT(printf, 3, 4)
 size_t asnprintf(char **out, size_t limit, const char *fmt, ...) {
   size_t res;
@@ -84,6 +79,13 @@ size_t asnprintf(char **out, size_t limit, const char *fmt, ...) {
   res = vasnprintf(out, limit, fmt, a);
   va_end(a);
   return res;
+}
+
+#ifndef MISSING_ASPRINTF
+
+FUN_FORMAT(printf, 2, 0)
+size_t vasprintf(char **out, const char *fmt, va_list a) {
+  return vasnprintf(out, INT_MAX, fmt, a);
 }
 
 FUN_FORMAT(printf, 2, 3)
@@ -95,6 +97,8 @@ size_t asprintf(char **out, const char *fmt, ...) {
   va_end(a);
   return res;
 }
+
+#endif
 
 
 FUN_FORMAT(printf, 2, 0)
