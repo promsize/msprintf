@@ -15,7 +15,7 @@ SRCS?=$(wildcard ${NAME}*.c)
 LANGUAGE?=-std=c11
 WARNINGS?=-pedantic -Wall -Wextra -Wno-unused
 DEBUG?=-g
-OPTIMIZE?=-O2
+OPTIMIZE?=-Os
 DEFINES?=
 INCLUDES?=-I.
 
