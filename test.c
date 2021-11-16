@@ -12,6 +12,7 @@ int main(void) {
 
   // asprintf
 
+#ifdef MISSING_ASPRINTF
   l = asprintf(&s, "%c\n", 'a');
   assert(l == 2);
   assert(strcmp(s, "a\n") == 0);
@@ -26,6 +27,7 @@ int main(void) {
   assert(l == 5);
   assert(strcmp(s, "test\n") == 0);
   free(s);
+#endif
 
   // asnprintf
 
