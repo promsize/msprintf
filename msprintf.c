@@ -111,16 +111,6 @@ char *vmsnprintf(size_t limit, const char *fmt, va_list a) {
   return ret;
 }
 
-FUN_FORMAT(printf, 1, 0)
-ARG_FORMAT(1)
-char *vmsprintf(const char *fmt, va_list a) {
-  int res;
-  char *ret;
-  res = vasnprintf(&ret, INT_MAX, fmt, a);
-  assert(res >= 0);
-  return ret;
-}
-
 FUN_FORMAT(printf, 2, 3)
 ARG_FORMAT(2)
 char *msnprintf(size_t limit, const char *fmt, ...) {
@@ -130,6 +120,16 @@ char *msnprintf(size_t limit, const char *fmt, ...) {
   va_start(a, fmt);
   res = vasnprintf(&ret, limit, fmt, a);
   va_end(a);
+  assert(res >= 0);
+  return ret;
+}
+
+FUN_FORMAT(printf, 1, 0)
+ARG_FORMAT(1)
+char *vmsprintf(const char *fmt, va_list a) {
+  int res;
+  char *ret;
+  res = vasnprintf(&ret, INT_MAX, fmt, a);
   assert(res >= 0);
   return ret;
 }

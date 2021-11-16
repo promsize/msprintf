@@ -62,12 +62,12 @@ extern int asprintf(char **out, const char *fmt, ...);
 FUN_FORMAT(printf, 2, 0)
 ARG_FORMAT(2)
 extern char *vmsnprintf(size_t limit, const char *fmt, va_list a);
-FUN_FORMAT(printf, 1, 0)
-ARG_FORMAT(1)
-extern char *vmsprintf(const char *fmt, va_list a);
 FUN_FORMAT(printf, 2, 3)
 ARG_FORMAT(2)
 extern char *msnprintf(size_t limit, const char *fmt, ...);
+FUN_FORMAT(printf, 1, 0)
+ARG_FORMAT(1)
+extern char *vmsprintf(const char *fmt, va_list a);
 FUN_FORMAT(printf, 1, 2)
 ARG_FORMAT(1)
 extern char *msprintf(const char *fmt, ...);
