@@ -1,3 +1,8 @@
+/*
+ * msprintf - Allocating variants of sprintf
+ *
+ * Copyright (C) 2020-2021 Ingo Albrecht <copyright@promovicz.org>
+ */
 
 #include <assert.h>
 #include <limits.h>
