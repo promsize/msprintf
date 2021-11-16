@@ -48,14 +48,14 @@
 
 /* versions with A take a destination pointer */
 FUN_FORMAT(printf, 3, 0)
-extern size_t vasnprintf(char **out, size_t limit, const char *fmt, va_list a);
+extern int vasnprintf(char **out, size_t limit, const char *fmt, va_list a);
 FUN_FORMAT(printf, 3, 4)
-extern size_t asnprintf(char **out, size_t limit, const char *fmt, ...);
+extern int asnprintf(char **out, size_t limit, const char *fmt, ...);
 #ifndef MISSING_ASPRINTF
 FUN_FORMAT(printf, 2, 0)
-extern size_t vasprintf(char **out, const char *fmt, va_list a);
+extern int vasprintf(char **out, const char *fmt, va_list a);
 FUN_FORMAT(printf, 2, 3)
-extern size_t asprintf(char **out, const char *fmt, ...);
+extern int asprintf(char **out, const char *fmt, ...);
 #endif
 
 /* versions with M return the allocated string */
