@@ -81,7 +81,7 @@ int asnprintf(char **out, size_t limit, const char *fmt, ...) {
   return res;
 }
 
-#ifndef MISSING_ASPRINTF
+#ifdef MISSING_ASPRINTF
 
 FUN_FORMAT(printf, 2, 0)
 int vasprintf(char **out, const char *fmt, va_list a) {

@@ -51,7 +51,7 @@ FUN_FORMAT(printf, 3, 0)
 extern int vasnprintf(char **out, size_t limit, const char *fmt, va_list a);
 FUN_FORMAT(printf, 3, 4)
 extern int asnprintf(char **out, size_t limit, const char *fmt, ...);
-#ifndef MISSING_ASPRINTF
+#ifdef MISSING_ASPRINTF
 FUN_FORMAT(printf, 2, 0)
 extern int vasprintf(char **out, const char *fmt, va_list a);
 FUN_FORMAT(printf, 2, 3)
