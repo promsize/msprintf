@@ -114,35 +114,32 @@ char *vmsnprintf(size_t limit, const char *fmt, va_list a) {
 FUN_FORMAT(printf, 2, 3)
 ARG_FORMAT(2)
 char *msnprintf(size_t limit, const char *fmt, ...) {
+  char *ret = NULL;
   int res;
-  char *ret;
   va_list a;
   va_start(a, fmt);
   res = vasnprintf(&ret, limit, fmt, a);
   va_end(a);
-  assert(res >= 0);
   return ret;
 }
 
 FUN_FORMAT(printf, 1, 0)
 ARG_FORMAT(1)
 char *vmsprintf(const char *fmt, va_list a) {
+  char *ret = NULL;
   int res;
-  char *ret;
   res = vasnprintf(&ret, INT_MAX, fmt, a);
-  assert(res >= 0);
   return ret;
 }
 
 FUN_FORMAT(printf, 1, 2)
 ARG_FORMAT(1)
 char *msprintf(const char *fmt, ...) {
+  char *ret = NULL;
   int res;
-  char *ret;
   va_list a;
   va_start(a, fmt);
   res = vasnprintf(&ret, INT_MAX, fmt, a);
   va_end(a);
-  assert(res >= 0);
   return ret;
 }
