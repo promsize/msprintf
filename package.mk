@@ -7,6 +7,8 @@ EXE?=${NAME}
 
 LIB?=lib${NAME}.a
 
+TST?=test-${NAME}
+
 PROG?=$(wildcard main.c)
 TEST?=$(wildcard test.c)
 HDRS?=$(wildcard ${NAME}*.h)
@@ -28,7 +30,7 @@ CPPFLAGS=${DEFINES} -DIN_${UPNAME} ${INCLUDES}
 
 OBJS=$(SRCS:.c=.o)
 
-ALLTGTS=$(if ${PROG},${EXE}) $(if ${SRCS},${LIB}) $(if ${TEST},test)
+ALLTGTS=$(if ${PROG},${EXE}) $(if ${SRCS},${LIB}) $(if ${TEST},${TST})
 ALLSRCS=$(if ${PROG},${PROG}) $(if ${SRCS},${SRCS}) $(if ${TEST},${TEST})
 ALLOBJS=$(ALLSRCS:.c=.o)
 ALLDEPS=$(ALLSRCS:.c=.d)
@@ -57,12 +59,16 @@ ${LIB}: ${OBJS}
 endif
 
 # rules for the test
-ifneq (${TEST},)
-check: test
-	./test
-.PHONY: check
+ifeq (${TEST},)
+test:
+	@echo "This package has no tests."
+.PHONY: test
+else
+test: ${TST}
+	./${TST}
+.PHONY: test
 
-test: ${TEST} ${LIB}
+${TST}: ${TEST} ${LIB}
 	${CC} ${CPPFLAGS} -DIN_${UPNAME}_TEST ${CFLAGS} -o $@ $^
 	size $@
 endif

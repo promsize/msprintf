@@ -2,4 +2,4 @@
 *.a
 *.d
 *.o
-test
+test-*
